@@ -5,10 +5,15 @@
   <%= @micropost.content %>
 </p>
 
+
+  
 <p>
-  <strong>User:</strong>
-  <%= @micropost.user_id %>
+  <strong>Category:</strong>
+  <% @micropost.categories.each do |category|%>
+    <li><%= category.name%></li>
+  <% end %>
 </p>
+
 
 <% if @micropost.image.attached? %> 
 <!-- @post.image.present? will always return true, use attached? to check presence --> 
@@ -18,5 +23,16 @@
   <%= image_tag @micropost.image %> 
 </p>
 <% end %>
+
+
+
+
+
+<p>
+  <strong>User:</strong>
+  <%= @micropost.user.name %>
+</p>
 <%= link_to 'Edit', edit_micropost_path(@micropost) %> |
 <%= link_to 'Back', microposts_path %>
+
+

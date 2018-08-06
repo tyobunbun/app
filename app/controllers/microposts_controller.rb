@@ -4,21 +4,27 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
+    @users = User.all
+    @categories = Category.all
     @microposts = Micropost.all
   end
 
   # GET /microposts/1
   # GET /microposts/1.json
   def show
+    @categories = Category.all
   end
 
   # GET /microposts/new
   def new
     @micropost = Micropost.new
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
+
   end
 
   # GET /microposts/1/edit
   def edit
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
   end
 
   # POST /microposts
@@ -40,7 +46,8 @@ class MicropostsController < ApplicationController
   # PATCH/PUT /microposts/1
 # PATCH/PUT /microposts/1.json
   def update
-  respond_to do |format|
+    @micropost.category_id = params[:category_id]
+    respond_to do |format|
     if @micropost.user_id == current_user.id && @micropost.update(micropost_params)
       format.html { redirect_to @micropost, notice: 'Micropost was successfully updated.' }
       format.json { render :show, status: :ok, location: @micropost }
@@ -71,6 +78,6 @@ class MicropostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
-      params.require(:micropost).permit(:content, :image)
+      params.require(:micropost).permit(:content, :image, category_ids: [])
     end
 end
