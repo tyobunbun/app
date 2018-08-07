@@ -6,7 +6,10 @@
 </p>
 
 
-  
+<p><%= @micropost.comments.count %> Comments</p>
+<%= render @micropost.comments %>
+<%= render 'comments/form' %>
+
 <p>
   <strong>Category:</strong>
   <% @micropost.categories.each do |category|%>

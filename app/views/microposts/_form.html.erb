@@ -31,8 +31,6 @@
     <%= form.file_field :image %> 
   </div> 
 
-  <%= form.collection_select :category_id, Category.all, :id, :name %>
-
 
   <div class="actions">
     <%= form.submit %>
