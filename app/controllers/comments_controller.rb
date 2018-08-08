@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @micropost = Micropost.find(params[:micropost_id])
-    @comment = @micropost.comments.create(params[:comment].permit(:name, :comment))
+    @comment = @micropost.comments.create(comment_params)
     redirect_to micropost_path(@micropost)
   end
 
