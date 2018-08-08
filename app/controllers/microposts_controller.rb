@@ -6,7 +6,6 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
-    @users = User.all
     @categories = Category.all
     @microposts = Micropost.all
   end
@@ -20,12 +19,12 @@ class MicropostsController < ApplicationController
   # GET /microposts/new
   def new
     @micropost = Micropost.new
-    @categories = Category.all.map { |c| [c.name, c.id] }
+    @categories = Category.all.pluck(:name, :id)
   end
 
   # GET /microposts/1/edit
   def edit
-    @categories = Category.all.map { |c| [c.name, c.id] }
+    @categories = Category.all.pluck(:name, :id)
   end
 
   # POST /microposts
