@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  created: “%{name} was successfully created.”
+  destroyed: “%{name} was successfully destroyed.”
+  updated: “%{name} was successfully updatedd.”
