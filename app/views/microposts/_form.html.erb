@@ -2,7 +2,6 @@
   <% if micropost.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(micropost.errors.count, "error") %> prohibited this micropost from being saved:</h2>
-
       <ul>
       <% micropost.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,8 +9,6 @@
       </ul>
     </div>
   <% end %>
-
-
   <div class="field">
     <%= hidden_field_tag "micropost[category_ids][]", nil %>
     <% Category.all.each do |cat| %>
@@ -19,17 +16,14 @@
       <%= cat.name %>
     <% end %>
   </div>
-
-
   <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content %>
   </div>
-
-  <div class= "field" > 
-    <%= form.label :image %> 
-    <%= form.file_field :image %> 
-  </div> 
+  <div class= "field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
 
 
   <div class="actions">

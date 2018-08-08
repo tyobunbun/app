@@ -1,3 +1,4 @@
+# rubocop:disable all
 # frozen_string_literal: true
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
@@ -9,7 +10,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '09c3d4932d24e096d753bffc09dba45fe777159670131fcc1aceb95dc1a63f0b1001e174807072a39b331494b226c93f9988ea254685d76471962b0619d216ec'
-  
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -281,3 +282,4 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 end
+# rubocop:enable all

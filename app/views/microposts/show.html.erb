@@ -4,36 +4,25 @@
   <strong>Content:</strong>
   <%= @micropost.content %>
 </p>
-
-
 <p><%= @micropost.comments.count %> Comments</p>
 <%= render @micropost.comments %>
-<%= render 'comments/form' %>
-
+<%= render partial:'comments/form', locals: {micropost: @micropost} %>
 <p>
   <strong>Category:</strong>
   <% @micropost.categories.each do |category|%>
     <li><%= category.name%></li>
   <% end %>
 </p>
-
-
-<% if @micropost.image.attached? %> 
-<!-- @post.image.present? will always return true, use attached? to check presence --> 
-<p> 
-<strong> Image: </strong> 
-  <br> 
-  <%= image_tag @micropost.image %> 
+<% if @micropost.image.attached? %>
+<!-- @post.image.present? will always return true, use attached? to check presence -->
+<p>
+<strong> Image: </strong>
+  <%= image_tag @micropost.image %>
 </p>
 <% end %>
-
-
-
-
-
 <p>
   <strong>User:</strong>
-  <%= @micropost.user.name %>
+  <%= @micropost.user_name %>
 </p>
 <%= link_to 'Edit', edit_micropost_path(@micropost) %> |
 <%= link_to 'Back', microposts_path %>
