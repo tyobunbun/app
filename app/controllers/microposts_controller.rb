@@ -68,7 +68,7 @@ class MicropostsController < ApplicationController
   # DELETE /microposts/1
   # DELETE /microposts/1.json
   def destroy
-    @micropost.destroy if @micropost == current_user.microposts.find(params[:id])
+    @micropost.destroy if ifcurrentuser
     respond_to do |format|
       format.html { redirect_to microposts_url, notice: 'Micropost was successfully destroyed.' }
       format.json { head :no_content }
@@ -85,5 +85,9 @@ class MicropostsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def micropost_params
     params.require(:micropost).permit(:content, :image, category_ids: [])
+  end
+
+  def ifcurrentuser
+    @micropost = current_user.microposts.find(params[:id])
   end
 end
