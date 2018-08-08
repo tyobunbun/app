@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   def destroy
     @micropost = Micropost.find(params[:micropost_id])
-    @comment = @micropost.comments.find(params[:id])
+    @comment = set_comment
     @comment.destroy
     redirect_to micropost_path(@micropost)
   end
