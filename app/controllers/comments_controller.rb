@@ -22,8 +22,20 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @micropost = Micropost.find(params[:micropost_id])
-    @comment = @micropost.comments.create(comment_params)
-    redirect_to micropost_path(@micropost)
+    @comment = @micropost.comments.new(comment_params)
+    respond_to do |format|
+      if @comment.save
+        format.html do
+          redirect_to micropost_path(@micropost)
+        end
+        format.json { render :show, status: :created, location: @comment }
+      else
+        format.html { render :new }
+        format.json do
+          render json: @comment.errors, status: :unprocessable_entity
+        end
+      end
+    end
   end
 
   # PATCH/PUT /comments/1
