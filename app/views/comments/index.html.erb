@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @comments.each do |comment| %>
+    <% @comments.order(name: :asc).each do |comment| %>
       <tr>
         <td><%= comment.name %></td>
         <td><%= comment.comment %></td>
