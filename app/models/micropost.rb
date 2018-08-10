@@ -3,7 +3,7 @@
 class Micropost < ApplicationRecord
   belongs_to :user
   delegate :name, to: :user, prefix: true
-  has_many :category_microposts, dependent: :delete_all
+  has_many :category_microposts, dependent: :destroy
   has_many :comments, dependent: :delete_all
   has_many :categories, through: :category_microposts, dependent: :delete_all
   has_one_attached :image, dependent: :delete_all

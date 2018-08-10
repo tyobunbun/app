@@ -5,7 +5,11 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    @comments = Comment.all
+    if params[:micropost_id]
+      @comments = Comment.where(micropost_id: params[:micropost_id])
+    else
+      @comments = Comment.all
+    end
   end
 
   # GET /comments/1
