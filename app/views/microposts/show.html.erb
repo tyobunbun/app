@@ -2,13 +2,16 @@
   <p id="notice"><%= notice %></p>
 
   <p>
-    <strong>Content:</strong>
-    <%= @micropost.content %>
+    <strong>Content:</strong> 
   </p>
+  <p><%= @micropost.content %></p>
+  <strong>Comments:</strong>
   <!-- <p><%= @micropost.comments.count %> Comments</p> -->
   <!-- <%= render @micropost.comments %> -->
-  <ul id="comments"></ul>
-  <%= render partial:'comments/form', locals: {micropost: @micropost} %>
+    <ul id="comments"></ul>
+    <% if user_signed_in? %>
+      <%= render partial:'comments/form', locals: {micropost: @micropost} %>
+    <% end %>
   <p>
     <strong>Category:</strong>
     <% @micropost.categories.each do |category|%>

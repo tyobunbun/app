@@ -2,18 +2,15 @@
 
 class MicropostsController < ApplicationController
   before_action :set_micropost, only: %i[show edit update destroy]
-  before_action :authenticate_user!
   # GET /microposts
   # GET /microposts.json
   def index
-    @categories = Category.all
     @microposts = Micropost.all
   end
 
   # GET /microposts/1
   # GET /microposts/1.json
   def show
-    @categories = Category.all
   end
 
   # GET /microposts/new
@@ -36,8 +33,7 @@ class MicropostsController < ApplicationController
     respond_to do |format|
       if @micropost.save
         format.html do
-          redirect_to @micropost,
-                      notice: t('created', name: 'Category')
+          redirect_to @micropost, notice: t('created', name: 'Micropost')
         end
         format.json { render :show, status: :created, location: @micropost }
       else
