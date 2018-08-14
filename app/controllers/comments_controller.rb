@@ -4,11 +4,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
   # GET /comments
   def index
-    @comments = if params[:micropost_id]
-                  Comment.where(micropost_id: params[:micropost_id])
-                else
-                  Comment.all
-                end
+    @comments = params[:micropost_id] ? Comment.where(micropost_id: params[:micropost_id]) : Comment.all
   end
 
   # GET /comments/1
