@@ -18,7 +18,7 @@
         <td><%= comment.comment %></td>
         <td><%= link_to 'Show', comment %></td>
         <td>
-          <% if user_signed_in? %>
+          <% if user_signed_in? && comment.user_id == current_user.id %>
             <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
             <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <%end%>

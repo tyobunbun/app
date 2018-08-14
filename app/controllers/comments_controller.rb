@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
   def create
     @micropost = Micropost.find(params[:micropost_id])
     @comment = @micropost.comments.new(comment_params)
+    @comment.user = current_user
     respond_to do |format|
       if @comment.save
         format.html do
