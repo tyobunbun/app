@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h1><%= link_to image_tag("background.png", alt: "Microposts_bg") %></h1>
 <h1>Microposts</h1>
 <table>
   <thead>
@@ -6,16 +7,19 @@
       <th>User</th>
       <th>Category</th>
       <th>Content</th>
-      <th>Show and New comments</th>
+      <th>Show and New comments </th>
       <th>Edit</th>
       <th>Destory</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% @microposts.each do |micropost| %>
       <tr>
-        <td><%= micropost.user_name %></td>
+        <td>
+        <%= micropost.user_name %>
+          <br>
+          <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+        </td>
         <td>
           <% micropost.categories.pluck(:name).each do |cat|%>
             <li><%= cat%></li>
