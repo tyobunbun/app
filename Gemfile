@@ -14,6 +14,15 @@ gem 'rails', '~> 5.2.0'
 gem 'mysql2'
 gem 'yaml_db'
 
+gem 'jquery-turbolinks' # Turbolinksで遷移したときもjQuery.ready()を呼び出してくれる
+gem 'kaminari'
+
+gem 'bootstrap-will_paginate'
+gem 'will_paginate'
+
+gem 'bootstrap3-datetimepicker-rails'
+gem 'momentjs-rails'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -61,6 +70,9 @@ group :development do
   gem 'rails_best_practices'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'better_errors'                       # エラー画面を見やすくする
+  gem 'binding_of_caller'                   # better_errorsのエラー画面にconsoleを表示
+
 end
 
 group :test do
