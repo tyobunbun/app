@@ -17,8 +17,11 @@
         <td><%= comment.name %></td>
         <td><%= comment.comment %></td>
         <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if user_signed_in? && comment.user_id == current_user.id %>
+            <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+            <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to 'New Comment', microposts_path %>

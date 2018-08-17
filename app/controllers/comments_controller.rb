@@ -2,14 +2,9 @@
 
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
-
   # GET /comments
   def index
-    if params[:micropost_id]
-      @comments = Comment.where(micropost_id: params[:micropost_id])
-    else
-      @comments = Comment.all
-    end
+    @comments = params[:micropost_id] ? Comment.where(micropost_id: params[:micropost_id]) : Comment.all
   end
 
   # GET /comments/1
@@ -27,6 +22,7 @@ class CommentsController < ApplicationController
   def create
     @micropost = Micropost.find(params[:micropost_id])
     @comment = @micropost.comments.new(comment_params)
+    @comment.user = current_user
     respond_to do |format|
       if @comment.save
         format.html do
@@ -53,10 +49,8 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   def destroy
-    @micropost = Micropost.find(params[:micropost_id])
-    @comment = set_comment
     @comment.destroy
-    redirect_to micropost_path(@micropost)
+    redirect_to comments_url, notice: t('destroyed', name: 'Comment')
   end
 
   private

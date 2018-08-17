@@ -1,23 +1,27 @@
 <p id="notice"><%= notice %></p>
-
+<h1><%= link_to image_tag("rails.png", alt: "Rails logo") %></h1>
 <h1>Listing Users</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Name</th>
       <th>Email</th>
-      <th colspan="3"></th>
+      <th>Actions</th>
+      <th colspan="1"></th>
     </tr>
   </thead>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= gravatar_for user, size: 50 %></td>
+        <td><%= link_to user.name, user %></td> 
         <td><%= user.email %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Category', categories_path %></td>
+        <td><%= link_to 'Microposts', microposts_path %></td>
       </tr>
     <% end %>
 </table>
