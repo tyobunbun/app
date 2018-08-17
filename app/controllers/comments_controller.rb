@@ -4,11 +4,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
   # GET /comments
   def index
-    @comments = if params[:micropost_id]
-                  Comment.where(micropost_id: params[:micropost_id])
-                else
-                  Comment.all
-                end
+    @comments = params[:micropost_id] ? Comment.where(micropost_id: params[:micropost_id]) : Comment.all
   end
 
   # GET /comments/1
@@ -26,6 +22,7 @@ class CommentsController < ApplicationController
   def create
     @micropost = Micropost.find(params[:micropost_id])
     @comment = @micropost.comments.new(comment_params)
+    @comment.user = current_user
     respond_to do |format|
       if @comment.save
         format.html do

@@ -5,7 +5,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :microposts, dependent: :delete_all
+  has_many :microposts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validates :name, presence: true, length: { minimum: 1 }
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 end

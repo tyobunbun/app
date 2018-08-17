@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  <strong>Image:</strong>
+  <%= link_to gravatar_for(@user, size: 50),@user %>
+</p>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
